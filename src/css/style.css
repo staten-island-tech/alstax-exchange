@@ -8,6 +8,7 @@ body {
 }
 
 .coin-info {
+  background-color: bisque;
   width: 30vw;
   margin: 5rem;
   padding: 3rem;
