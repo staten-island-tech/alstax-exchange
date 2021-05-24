@@ -11,7 +11,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "parcel-bundler": "^1.12.4"
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.26.9"
   },
   "browserslist": [
     "since 2017-06"
@@ -24,8 +25,8 @@
     "url": "https://github.com/staten-island-tech/api-project-alston-max/issues"
   },
   "homepage": "https://github.com/staten-island-tech/api-project-alston-max#readme",
+  "description": "",
   "dependencies": {
     "coingecko-api": "^1.0.10"
-  },
-  "description": ""
+  }
 }
