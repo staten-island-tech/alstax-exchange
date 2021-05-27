@@ -80,6 +80,37 @@ const query = async function () {
 
       return true;
     });
+    DOMSelectors.coinHTML.insertAdjacentHTML(
+      "afterend",
+      `
+      <footer class="bg-dark-grey max-w flex text-white">
+      <div class="container mx-auto text-center">
+        <div class="flex justify-start items-start">
+          <ul class="list-reset flex pt-16 pb-16">
+            <li class="mr-8 mt-2">
+              <a class="text-grey-darker no-underline hover:text-white" href="#">Terms of Use</a>
+            </li>
+            <li class="mr-8 mt-2">
+              <a class="text-grey-darker no-underline hover:text-white" href="#">Privacy</a>
+            </li>
+          </ul>
+          
+          <ul class="list-reset flex pt-16 pb-16 ml-auto">
+            <li class="mr-8">
+              <a class="text-grey-darker no-underline hover:text-white" href="#">Instagram</a>
+            </li>
+            <li class="mr-8">
+              <a class="text-grey-darker no-underline hover:text-white" href="#">Facebook</a>
+            </li>
+            <li class="mr-8">
+              <a class="text-grey-darker no-underline hover:text-white" href="#">Twitter</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      </footer>
+      `
+    );
   } catch (error) {
     console.log(error);
   }
