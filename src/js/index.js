@@ -77,9 +77,39 @@ const query = async function () {
         `
         );
       }
-
       return true;
     });
+    DOMSelectors.coinHTML.insertAdjacentHTML(
+      "afterend",
+      `
+      <footer id="footerStuff" class="bg-dark-grey max-w flex text-white">
+  <div class="container mx-auto text-center">
+    <div class="flex justify-start items-start">
+      <ul class="list-reset flex pt-16 pb-16">
+        <li class="mr-8 mt-2">
+          <a class="text-grey-darker no-underline hover:text-white" href="#">Terms of Use</a>
+        </li>
+        <li class="mr-8 mt-2">
+          <a class="text-grey-darker no-underline hover:text-white" href="#">Privacy</a>
+        </li>
+      </ul>
+      
+      <ul class="list-reset flex pt-16 pb-16 ml-auto">
+        <li class="mr-8">
+          <a class="text-grey-darker no-underline hover:text-white" href="#">Instagram</a>
+        </li>
+        <li class="mr-8">
+          <a class="text-grey-darker no-underline hover:text-white" href="#">Facebook</a>
+        </li>
+        <li class="mr-8">
+          <a class="text-grey-darker no-underline hover:text-white" href="#">Twitter</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+      `
+    );
   } catch (error) {
     console.log(error);
   }
@@ -103,10 +133,42 @@ const searchQuery = async function () {
           <div class="bg-gray-700 text-left p-4">Volume (24h)</div>
           <div class="bg-gray-700 text-left p-4">Circulating Supply</div>
     `;
+
+    if (filteredCoins.length === 0) {
+      console.log("no results");
+      DOMSelectors.mainHTML.innerHTML = `
+      <div class="container mx-auto text-center">
+      <div class="py-32">
+        <h1 class="text-5xl text-semibold">No results found.</h1>
+        <p class="text-2xl text-hairline py-6">Did you spell the crypto correctly? <br />We don't support coins that are not in the Top 250 Market Cap.</p>
+      </div>
+      <div class="flex justify-start items-start">
+        <ul class="list-reset flex pt-16 pb-16">
+          <li class="mr-8 mt-2">
+            <a class="text-grey-darker no-underline hover:text-white" href="#">Terms of Use</a>
+          </li>
+          <li class="mr-8 mt-2">
+            <a class="text-grey-darker no-underline hover:text-white" href="#">Privacy</a>
+          </li>
+        </ul>
+        
+        <ul class="list-reset flex pt-16 pb-16 ml-auto">
+          <li class="mr-8">
+            <a class="text-grey-darker no-underline hover:text-white" href="#">Instagram</a>
+          </li>
+          <li class="mr-8">
+            <a class="text-grey-darker no-underline hover:text-white" href="#">Facebook</a>
+          </li>
+          <li class="mr-8">
+            <a class="text-grey-darker no-underline hover:text-white" href="#">Twitter</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+      `;
+    }
+
     filteredCoins.forEach((coin) => {
-      if (coinNumber >= 100) {
-        return false;
-      }
       const eachCoin = filteredCoins[coinNumber];
       coinNumber++;
 
@@ -157,8 +219,6 @@ const searchQuery = async function () {
         `
         );
       }
-
-      return true;
     });
   } catch (error) {
     console.log(error);
