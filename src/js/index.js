@@ -15,8 +15,6 @@ DOMSelectors.searchBar.addEventListener("keyup", (e) => {
   searchQuery();
 });
 
-function getError() {}
-
 const query = async function () {
   try {
     const response = await fetch(
@@ -42,11 +40,13 @@ const query = async function () {
       const coinImage = eachCoin.image;
       const coinChange24h = eachCoin.price_change_percentage_24h;
       const coinChange24hRounded =
-        Math.round((coinChange24h + Number.EPSILON) * 100) / 100;
-      const coinChange24hDollars = eachCoin.price_change_24h;
-      const coinChange24hDollarsAbs = Math.abs(coinChange24hDollars);
+        Math.round(
+          (eachCoin.price_change_percentage_24h + Number.EPSILON) * 100
+        ) / 100;
       const coinChange24hDollarsRounded =
-        Math.round((coinChange24hDollarsAbs + Number.EPSILON) * 100) / 100;
+        Math.round(
+          (Math.abs(eachCoin.price_change_24h) + Number.EPSILON) * 100
+        ) / 100;
       const marketCap = eachCoin.market_cap.toLocaleString();
       const volume = eachCoin.total_volume.toLocaleString();
       const supply = eachCoin.circulating_supply.toLocaleString();
@@ -209,6 +209,7 @@ const searchQuery = async function () {
     });
   } catch (error) {
     console.log(error);
+    alert("Error loading API.");
   }
 };
 
