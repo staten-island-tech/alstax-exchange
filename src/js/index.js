@@ -11,9 +11,11 @@ DOMSelectors.searchBar.addEventListener("keyup", (e) => {
       crypto.name.includes(searchString)
     );
   });
-  console.log(filteredCoins);
+  console.log(filteredCoins.length);
   searchQuery();
 });
+
+function getError() {}
 
 const query = async function () {
   try {
@@ -22,7 +24,9 @@ const query = async function () {
     );
     const data = await response.json();
     let coinNumber = 0;
-    console.log(DOMSelectors.searchBar.value.length);
+    console.log(
+      `search bar characters: ${DOMSelectors.searchBar.value.length}`
+    );
     data.every((coin) => {
       if (coinNumber >= 100) {
         return false;
@@ -123,8 +127,12 @@ const searchQuery = async function () {
     );
     data = await response.json();
     let coinNumber = 0;
-    console.log(DOMSelectors.searchBar.value.length);
-    DOMSelectors.coinHTML.innerHTML = `
+    console.log(
+      `search bar characters: ${DOMSelectors.searchBar.value.length}`
+    );
+    if (filteredCoins.length > 0) {
+      DOMSelectors.coinHTML.classList.replace("grid-cols-1", "grid-cols-8");
+      DOMSelectors.coinHTML.innerHTML = `
           <div class="bg-gray-700 text-left p-4">#</div>
           <div class="bg-gray-700 text-left p-4">Name</div>
           <div class="bg-gray-700 text-left p-4">Price</div>
@@ -134,6 +142,14 @@ const searchQuery = async function () {
           <div class="bg-gray-700 text-left p-4">Volume (24h)</div>
           <div class="bg-gray-700 text-left p-4">Circulating Supply</div>
     `;
+    } else {
+      DOMSelectors.coinHTML.innerHTML = `
+          <div class="text-5xl text-center font-semibold p-4">No search results. 😰</div>
+          <p class="text-2xl text-center text-hairline py-6">Did you spell the crypto correctly? <br />Remember, we only support the top 250 by market cap.</p>
+      `;
+      DOMSelectors.coinHTML.classList.replace("grid-cols-8", "grid-cols-1");
+    }
+
     filteredCoins.forEach((coin) => {
       if (coinNumber >= 100) {
         return false;
