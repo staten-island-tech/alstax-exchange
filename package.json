@@ -20,7 +20,9 @@
   "browserslist": [
     "since 2017-06"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "animejs": "^3.2.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/staten-island-tech/api-project-alston-max.git"
